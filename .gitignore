@@ -1,5 +1,9 @@
+**/*.d.ts
+src/index.d.ts
 *.d.ts.map
 node_modules
 *.swp
 log.*
 *.log
+
+!src/global.d.ts

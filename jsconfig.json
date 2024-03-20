@@ -11,5 +11,5 @@
         "target": "esnext"
     },
     "exclude": ["node_modules"],
-    "include": ["src/**/*.d.ts"]
+    "include": ["src/global.d.ts", "src/**/*.js"]
 }
