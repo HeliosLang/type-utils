@@ -1,0 +1,5 @@
+*.d.ts.map
+node_modules
+*.swp
+log.*
+*.log
