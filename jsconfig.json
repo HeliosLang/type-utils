@@ -8,7 +8,8 @@
         "strictNullChecks": true,
         "moduleResolution": "nodenext",
         "module": "nodenext",
-        "target": "esnext"
+        "target": "esnext",
+        "lib": ["es6"]
     },
     "exclude": ["node_modules"],
     "include": ["src/index.d.ts", "src/**/*.js"]
