@@ -4,5 +4,6 @@ declare global {
 }
 
 export const None: null
+export function expectSome<T>(option: Option<T>, msg?: string): T
 export function isNone<T>(option: Option<T>): option is null | undefined
 export function isSome<T>(option: Option<T>): option is T
