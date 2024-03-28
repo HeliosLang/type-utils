@@ -1,9 +1,14 @@
 declare global {
-    type Only<T, C, R> = T extends C ? R : never
     type Option<T> = null | undefined | T
+    type Either<L, R> = { left: L } | { right: R } // use right to represent a correct value, left for errors
 }
 
 export const None: null
 export function expectSome<T>(option: Option<T>, msg?: string): T
 export function isNone<T>(option: Option<T>): option is null | undefined
 export function isSome<T>(option: Option<T>): option is T
+
+export function expectLeft<L, R>(either: Either<L, R>, msg?: string): L
+export function expectRight<L, R>(either: Either<L, R>, msg?: string): R
+export function isLeft<L, R>(either: Either<L, R>): either is { left: L }
+export function isRight<L, R>(either: Either<L, R>): either is { right: R }
