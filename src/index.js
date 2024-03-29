@@ -5,6 +5,15 @@ export const None = null
 
 /**
  * @template T
+ * @param {Option<T>[]} list
+ * @returns {Option<T[]>}
+ */
+export function allOrNone(list) {
+    return list.every(isSome) ? /** @type {any} */ (list) : None
+}
+
+/**
+ * @template T
  * @param {Option<T>} option
  * @param {string} msg
  * @returns {T}
