@@ -1,3 +1,5 @@
+export { JSONSafe as JSON } from "./json.js"
+
 /**
  * @type {null}
  */
@@ -101,12 +103,4 @@ export function isLeft(either) {
  */
 export function isRight(either) {
     return "right" in either
-}
-
-/**
- * Don't shadow `JSON` because that might break existing type-checks
- */
-export const Json = {
-    parse: JSON.parse,
-    stringify: JSON.stringify
 }
