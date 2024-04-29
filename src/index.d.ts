@@ -5,20 +5,6 @@ declare global {
         | (string | number | boolean | null)
         | JsonSafe[]
         | { [key: string]: JsonSafe }
-
-    namespace Json {
-        function parse(
-            text: string,
-            reviver?: ((this: any, key: string, value: any) => any) | undefined
-        ): JsonSafe
-        function stringify(
-            value: JsonSafe,
-            replacer?:
-                | ((this: any, key: string, value: any) => any)
-                | undefined,
-            space?: string | number | undefined
-        ): string
-    }
 }
 
 export const None: null
@@ -31,3 +17,18 @@ export function expectLeft<L, R>(either: Either<L, R>, msg?: string): L
 export function expectRight<L, R>(either: Either<L, R>, msg?: string): R
 export function isLeft<L, R>(either: Either<L, R>): either is { left: L }
 export function isRight<L, R>(either: Either<L, R>): either is { right: R }
+
+/**
+ * Must be imported explicitly in order to override default JSON namespace
+ */
+export namespace JSON {
+    function parse(
+        text: string,
+        reviver?: ((this: any, key: string, value: any) => any) | undefined
+    ): JsonSafe
+    function stringify(
+        value: JsonSafe,
+        replacer?: ((this: any, key: string, value: any) => any) | undefined,
+        space?: string | number | undefined
+    ): string
+}
