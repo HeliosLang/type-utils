@@ -74,7 +74,7 @@ export function expectLeft(
  */
 export function expectRight(
     either,
-    msg = `expected Either.right, got ${either}`
+    msg = `expected Either.right, got ${JSON.stringify(either)}`
 ) {
     if ("right" in either) {
         return either.right
@@ -101,4 +101,12 @@ export function isLeft(either) {
  */
 export function isRight(either) {
     return "right" in either
+}
+
+/**
+ * Don't shadow `JSON` because that might break existing type-checks
+ */
+export const Json = {
+    parse: JSON.parse,
+    stringify: JSON.stringify
 }

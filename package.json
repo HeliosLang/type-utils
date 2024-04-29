@@ -6,7 +6,7 @@
     "types": "src/index.d.ts",
     "type": "module",
     "scripts": {
-        "build": "npm test",
+        "build": "npm run prettify && npm run test:types",
         "prepare": "npm run build",
         "prettify": "npx prettier . --write",
         "test": "npm run test:pretty && npm run test:types",

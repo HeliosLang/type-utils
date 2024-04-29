@@ -1,6 +1,24 @@
 declare global {
     type Option<T> = null | undefined | T
     type Either<L, R> = { left: L } | { right: R } // use right to represent a correct value, left for errors
+    type JsonSafe =
+        | (string | number | boolean | null)
+        | JsonSafe[]
+        | { [key: string]: JsonSafe }
+
+    namespace Json {
+        function parse(
+            text: string,
+            reviver?: ((this: any, key: string, value: any) => any) | undefined
+        ): JsonSafe
+        function stringify(
+            value: JsonSafe,
+            replacer?:
+                | ((this: any, key: string, value: any) => any)
+                | undefined,
+            space?: string | number | undefined
+        ): string
+    }
 }
 
 export const None: null
