@@ -27,6 +27,9 @@ export function expectEnum(input, assertT, msg = undefined) {
         const [key] = keys
         const [value] = input[key]
 
+        /**
+         * @type {any}
+         */
         const a = assertT[key]
 
         if (!a) {
@@ -34,7 +37,7 @@ export function expectEnum(input, assertT, msg = undefined) {
         }
 
         try {
-            ;/** @type {any} */ (a)(value)
+            a(value)
         } catch (e) {
             throw new TypeError(msg ?? e.toString())
         }
