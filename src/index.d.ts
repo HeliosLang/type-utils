@@ -18,7 +18,10 @@ export function expectRight<L, R>(either: Either<L, R>, msg?: string): R
 export function isLeft<L, R>(either: Either<L, R>): either is { left: L }
 export function isRight<L, R>(either: Either<L, R>): either is { right: R }
 
-type Assert<O=unknown> = (input: unknown, msg?: string | undefined) => asserts input is O
+type Assert<O = unknown> = (
+    input: unknown,
+    msg?: string | undefined
+) => asserts input is O
 type EnumFromAsserts<A extends Record<string, Assert>, K> = K extends string
     ? { [K_ in K]: A[K] extends Assert<infer O> ? O : never }
     : never
