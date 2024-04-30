@@ -45,3 +45,9 @@ export namespace JSON {
         space?: string | number | undefined
     ): string
 }
+
+export function isJsonSafe(input: unknown): input is JsonSafe
+export function expectJsonSafe(
+    input: unknown,
+    msg?: string | undefined
+): asserts input is JsonSafe
