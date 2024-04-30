@@ -18,6 +18,15 @@ export function expectRight<L, R>(either: Either<L, R>, msg?: string): R
 export function isLeft<L, R>(either: Either<L, R>): either is { left: L }
 export function isRight<L, R>(either: Either<L, R>): either is { right: R }
 
+type EnumFromAsserts<A extends Record<string, Assert>, K> = K extends string
+    ? { [K_ in K]: A[K] extends Assert<any, infer O> ? O : never }
+    : never
+export function expectEnum<A extends Record<string, Assert>>(
+    input: unknown,
+    assertT: A,
+    msg: string | undefined = undefined
+): asserts input is EnumFromAsserts<A, keyof A>
+
 /**
  * Must be imported explicitly in order to override default JSON namespace
  */
