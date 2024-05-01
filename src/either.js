@@ -7,12 +7,12 @@
  */
 export function expectLeft(
     either,
-    msg = `expected Either.left, got ${either}`
+    msg = `expected Either.left, got Either.right`
 ) {
     if ("left" in either) {
         return either.left
     } else {
-        throw new Error(msg)
+        throw new TypeError(msg)
     }
 }
 
@@ -25,12 +25,12 @@ export function expectLeft(
  */
 export function expectRight(
     either,
-    msg = `expected Either.right, got ${JSON.stringify(either)}`
+    msg = `expected Either.right, got Either.left`
 ) {
     if ("right" in either) {
         return either.right
     } else {
-        throw new Error(msg)
+        throw new TypeError(msg)
     }
 }
 

@@ -18,14 +18,11 @@ export function allOrNone(list) {
  * @param {string} msg
  * @returns {T}
  */
-export function expectSome(
-    option,
-    msg = `expected Option.some, got ${option}`
-) {
+export function expectSome(option, msg = `expected Option.some, got None`) {
     if (option !== null && option !== undefined) {
         return option
     } else {
-        throw new Error(msg)
+        throw new TypeError(msg)
     }
 }
 
