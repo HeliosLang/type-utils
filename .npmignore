@@ -4,3 +4,4 @@ log.*
 *.log
 .prettierignore
 .vscode
+*.test.js

@@ -15,14 +15,14 @@ export function allOrNone(list) {
 /**
  * @template T
  * @param {Option<T>} option
- * @param {string} msg
+ * @param {string | undefined} msg
  * @returns {T}
  */
-export function expectSome(option, msg = `expected Option.some, got None`) {
+export function expectSome(option, msg = undefined) {
     if (option !== null && option !== undefined) {
         return option
     } else {
-        throw new TypeError(msg)
+        throw new TypeError(msg ?? `expected Option.some, got None`)
     }
 }
 

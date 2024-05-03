@@ -2,17 +2,14 @@
  * @template L
  * @template R
  * @param {Either<L, R>} either
- * @param {string} msg
+ * @param {string | undefined} msg
  * @returns {L}
  */
-export function expectLeft(
-    either,
-    msg = `expected Either.left, got Either.right`
-) {
+export function expectLeft(either, msg = undefined) {
     if ("left" in either) {
         return either.left
     } else {
-        throw new TypeError(msg)
+        throw new TypeError(msg ?? `expected Either.left, got Either.right`)
     }
 }
 
@@ -20,17 +17,14 @@ export function expectLeft(
  * @template L
  * @template R
  * @param {Either<L, R>} either
- * @param {string} msg
+ * @param {string | undefined} msg
  * @returns {R}
  */
-export function expectRight(
-    either,
-    msg = `expected Either.right, got Either.left`
-) {
+export function expectRight(either, msg = undefined) {
     if ("right" in either) {
         return either.right
     } else {
-        throw new TypeError(msg)
+        throw new TypeError(msg ?? `expected Either.right, got Either.left`)
     }
 }
 

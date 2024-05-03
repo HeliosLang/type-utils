@@ -1,3 +1,9 @@
+import { assert, expect } from "./generic.js"
+
+/**
+ * @typedef {import("./generic.js").NotifyOnFalse} NotifyOnFalse
+ */
+
 export const JSONSafe = {
     parse: JSON.parse,
     stringify: JSON.stringify
@@ -5,9 +11,10 @@ export const JSONSafe = {
 
 /**
  * @param {unknown} input
+ * @param {NotifyOnFalse} onFalse
  * @returns {input is JsonSafe}
  */
-export function isJsonSafe(input) {
+export function isJsonSafe(input, onFalse = undefined) {
     if (typeof input == "number") {
         return true
     } else if (typeof input == "string") {
@@ -17,10 +24,22 @@ export function isJsonSafe(input) {
     } else if (input === null) {
         return true
     } else if (Array.isArray(input)) {
-        return input.every(isJsonSafe)
+        return input.every((item, i) =>
+            isJsonSafe(item, onFalse ? (r) => onFalse(`[${i}]${r}`) : undefined)
+        )
     } else if (typeof input == "object") {
-        return Object.keys(input).every((key) => isJsonSafe(input[key]))
+        return Object.keys(input).every((key) =>
+            isJsonSafe(
+                input[key],
+                onFalse ? (r) => onFalse(`.${key}${r}`) : undefined
+            )
+        )
     } else {
+        if (onFalse) {
+            onFalse(
+                ": not number | string | boolean | null nor Array/Record thereof"
+            )
+        }
         return false
     }
 }
@@ -30,10 +49,15 @@ export function isJsonSafe(input) {
  * @param {string | undefined} msg
  * @returns {asserts input is JsonSafe}
  */
+export function assertJsonSafe(input, msg = undefined) {
+    return assert(input, isJsonSafe, msg)
+}
+
+/**
+ * @param {unknown} input
+ * @param {string | undefined} msg
+ * @returns {JsonSafe}
+ */
 export function expectJsonSafe(input, msg = undefined) {
-    if (isJsonSafe(input)) {
-        return
-    } else {
-        throw new TypeError(msg ?? "invalid JsonSafe value")
-    }
+    return expect(input, isJsonSafe, msg)
 }

@@ -6,11 +6,14 @@
         "skipLibCheck": true,
         "noImplicitThis": true,
         "strictNullChecks": true,
+        "noUnusedLocals": true,
+        "noUnusedParameters": true,
+        "noFallthroughCasesInSwitch": true,
         "moduleResolution": "nodenext",
         "module": "nodenext",
         "target": "esnext",
         "lib": ["es6"]
     },
     "exclude": ["node_modules"],
-    "include": ["src/index.d.ts", "src/**/*.js"]
+    "include": ["src/index.d.ts", "src/**/*.js", "src/json.test.ts"]
 }
