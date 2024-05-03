@@ -22,5 +22,10 @@ export {
 export { assertNumber, expectNumber, isNumber } from "./number.js"
 export { isObject } from "./object.js"
 export { None, allOrNone, expectSome, isNone, isSome } from "./option.js"
-export { assertString, expectString, isString } from "./string.js"
+export {
+    assertString,
+    expectString,
+    isString,
+    isFormattedString
+} from "./string.js"
 export { isTuple } from "./tuple.js"

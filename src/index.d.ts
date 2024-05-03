@@ -183,6 +183,14 @@ export function isString(
     onFalse?: NotifyOnFalse
 ): input is string
 
+type CheckFormat = (s: string) => boolean
+export function isFormattedString(checkFormat: CheckFormat): Check<string>
+export function isFormattedString(
+    input: unknown,
+    checkFormat: CheckFormat,
+    onFalse?: NotifyOnFalse
+): input is string
+
 type ToTuple<T extends Array<Check<any>>> = {
     [I in keyof T]: T[I] extends Check<infer Ti> ? Ti : never
 }

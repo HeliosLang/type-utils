@@ -1,8 +1,13 @@
+import { assert, expect } from "./generic.js"
+
 /**
  * @typedef {import("./generic.js").NotifyOnFalse} NotifyOnFalse
  */
 
-import { assert, expect } from "./generic.js"
+/**
+ * @template T
+ * @typedef {import("./generic.js").Check<T>} Check
+ */
 
 /**
  * @param {unknown} input
@@ -17,6 +22,55 @@ export function isString(input, onFalse = undefined) {
             onFalse(`not a string`)
         }
         return false
+    }
+}
+
+/**
+ * @typedef {(s: string) => boolean} CheckFormat
+ */
+
+/**
+ * @overload
+ * @param {CheckFormat} checkFormat
+ * @returns {Check<string>}
+ *
+ * @overload
+ * @param {unknown} input
+ * @param {CheckFormat} checkFormat
+ * @returns {input is string}
+ *
+ * @overload
+ * @param {unknown} input
+ * @param {CheckFormat} checkFormat
+ * @param {NotifyOnFalse} onFalse
+ * @returns {input is string}
+ *
+ * @param  {[CheckFormat] | [unknown, (s: string) => boolean] | [unknown, (s: string) => boolean, NotifyOnFalse]} args
+ */
+export function isFormattedString(...args) {
+    if (args.length == 1) {
+        const [checkFormat] = args
+
+        /**
+         * @type {Check<string>}
+         */
+        return (input, onFalse = undefined) => {
+            return isFormattedString(input, checkFormat, onFalse)
+        }
+    } else {
+        const [input, checkFormat, onFalse] = args
+
+        if (isString(input, onFalse)) {
+            if (!checkFormat(input)) {
+                if (onFalse) {
+                    onFalse("invalid format")
+                }
+            } else {
+                return true
+            }
+        } else {
+            return false
+        }
     }
 }
 
