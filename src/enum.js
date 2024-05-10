@@ -27,7 +27,7 @@ export function assertEnum(checkVariants) {
             }
 
             const [key] = keys
-            const [value] = input[key]
+            const value = input[key]
 
             /**
              * @type {any}
