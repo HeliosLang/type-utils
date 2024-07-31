@@ -197,3 +197,77 @@ type ToTuple<T extends Array<Check<any>>> = {
 export function isTuple<T extends Array<Check<any>>>(
     checkItems: [...T]
 ): Check<ToTuple<T>>
+
+/**
+ * TypeSchema is a JSON-safe representation of any data-like type in the Helios language
+ * This schema is used to correctly convert JS objects into UplcData and vice versa
+ */
+export type TypeSchema =
+    | InternalTypeSchema
+    | ReferenceTypeSchema
+    | ListTypeSchema
+    | MapTypeSchema
+    | OptionTypeSchema
+    | StructTypeSchema
+    | EnumTypeSchema
+    | VariantTypeSchema
+
+export type InternalTypeSchema = {
+    kind: "internal"
+    name: string
+}
+
+/**
+ * References are used to resolve recursive type structures (e.g. trees)
+ */
+export type ReferenceTypeSchema = {
+    kind: "reference"
+    id: string
+}
+
+export type ListTypeSchema = {
+    kind: "list"
+    itemType: TypeSchema
+}
+
+export type MapTypeSchema = {
+    kind: "map"
+    keyType: TypeSchema
+    valueType: TypeSchema
+}
+
+export type OptionTypeSchema = {
+    kind: "option"
+    someType: TypeSchema
+}
+
+export type StructTypeSchema = {
+    kind: "struct"
+    name: string
+    id: string
+    format: "singleton" | "list" | "map"
+    fieldTypes: FieldTypeSchema[]
+}
+
+/**
+ * Enums can only contain variants, but variants themselves are treated as standalone types
+ */
+export type EnumTypeSchema = {
+    kind: "enum"
+    name: string
+    id: string
+    variantTypes: VariantTypeSchema[]
+}
+
+export type VariantTypeSchema = {
+    kind: "variant"
+    name: string
+    id: string
+    tag: number
+    fieldTypes: FieldTypeSchema[]
+}
+
+export type FieldTypeSchema = {
+    name: string
+    type: TypeSchema
+}
