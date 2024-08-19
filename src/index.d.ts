@@ -205,6 +205,7 @@ export function isTuple<T extends Array<Check<any>>>(
 export type TypeSchema =
     | InternalTypeSchema
     | ReferenceTypeSchema
+    | TupleTypeSchema
     | ListTypeSchema
     | MapTypeSchema
     | OptionTypeSchema
@@ -223,6 +224,11 @@ export type InternalTypeSchema = {
 export type ReferenceTypeSchema = {
     kind: "reference"
     id: string
+}
+
+export type TupleTypeSchema = {
+    kind: "tuple"
+    itemTypes: TypeSchema[]
 }
 
 export type ListTypeSchema = {
