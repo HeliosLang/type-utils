@@ -273,7 +273,9 @@ export type VariantTypeSchema = {
     fieldTypes: FieldTypeSchema[]
 }
 
-export type FieldTypeSchema = {
+export type FieldTypeSchema<TAGGED extends "tagged" | "plain" = "plain"> = {
     name: string
     type: TypeSchema
-}
+} & hasEncodingKey extends "tagged"
+    ? { encodingKey: string }
+    : {}
