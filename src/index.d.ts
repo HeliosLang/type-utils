@@ -252,7 +252,7 @@ export type StructTypeSchema = {
     name: string
     id: string
     format: "singleton" | "list" | "map"
-    fieldTypes: FieldTypeSchema<any>[]
+    fieldTypes: StructFieldTypeSchema[]
 }
 
 /**
@@ -270,13 +270,16 @@ export type VariantTypeSchema = {
     name: string
     id: string
     tag: number
-    fieldTypes: FieldTypeSchema<"plain">[]
+    fieldTypes: FieldTypeSchema[]
 }
 
-//?!? this generic type is not being seen by the compiler - it thinks it is not generic
-export type FieldTypeSchema<TAGGED extends "tagged" | "plain" = "plain"> = {
+export type FieldTypeSchema = {
     name: string
     type: TypeSchema
-} & hasEncodingKey extends "tagged"
-    ? { encodingKey: string }
-    : {}
+}
+
+export type StructFieldTypeSchema = {
+    name: string
+    type: TypeSchema
+    key?: string
+}
