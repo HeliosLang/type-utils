@@ -252,7 +252,7 @@ export type StructTypeSchema = {
     name: string
     id: string
     format: "singleton" | "list" | "map"
-    fieldTypes: FieldTypeSchema[]
+    fieldTypes: StructFieldTypeSchema[]
 }
 
 /**
@@ -276,4 +276,10 @@ export type VariantTypeSchema = {
 export type FieldTypeSchema = {
     name: string
     type: TypeSchema
+}
+
+export type StructFieldTypeSchema = {
+    name: string
+    type: TypeSchema
+    key?: string
 }
