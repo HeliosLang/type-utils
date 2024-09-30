@@ -247,13 +247,23 @@ export type OptionTypeSchema = {
     someType: TypeSchema
 }
 
-export type StructTypeSchema = {
+type CommonStructTypeSchema = {
     kind: "struct"
     name: string
     id: string
-    format: "singleton" | "list" | "map"
-    fieldTypes: StructFieldTypeSchema[]
 }
+
+type PlainStructTypeSchema = CommonStructTypeSchema & {
+    format: "singleton" | "list"
+    fieldTypes: PlainStructFieldTypeSchema[]
+}
+
+type MapStructTypeSchema = CommonStructTypeSchema & {
+    format: "map"
+    fieldTypes: MapStructFieldTypeSchema[]
+}
+
+export type StructTypeSchema = PlainStructTypeSchema | MapStructTypeSchema
 
 /**
  * Enums can only contain variants, but variants themselves are treated as standalone types
@@ -278,8 +288,7 @@ export type FieldTypeSchema = {
     type: TypeSchema
 }
 
-export type StructFieldTypeSchema = {
-    name: string
-    type: TypeSchema
-    key?: string
+export type PlainStructFieldTypeSchema = FieldTypeSchema
+export type MapStructFieldTypeSchema = FieldTypeSchema & {
+    key: string
 }
