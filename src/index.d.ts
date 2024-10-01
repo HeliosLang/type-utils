@@ -164,7 +164,7 @@ export function isObject<T extends { [key: string]: Check<any> }>(
 export function isObject<T extends { [key: string]: Check<any> }>(
     input: unknown,
     checkProperties: T,
-    onFalse?: NotifyFalse
+    onFalse?: NotifyOnFalse
 ): input is ToObject<T>
 
 export const None: null
