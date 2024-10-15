@@ -1,26 +1,21 @@
 /**
- * @type {null}
- */
-export const None = null
-
-/**
  * @template T
- * @param {Option<T>[]} list
- * @returns {Option<T[]>}
+ * @param {(T | null | undefined)[]} list
+ * @returns {T[] | undefined}
  */
-export function allOrNone(list) {
-    return list.every(isSome) ? /** @type {any} */ (list) : None
+export function allOrUndefined(list) {
+    return list.every(isDefined) ? /** @type {any} */ (list) : undefined
 }
 
 /**
  * @template T
- * @param {Option<T>} option
+ * @param {T | null | undefined} x
  * @param {string | undefined} msg
  * @returns {T}
  */
-export function expectSome(option, msg = undefined) {
-    if (option !== null && option !== undefined) {
-        return option
+export function expectDefined(x, msg = undefined) {
+    if (x !== null && x !== undefined) {
+        return x
     } else {
         throw new TypeError(msg ?? `expected Option.some, got None`)
     }
@@ -28,18 +23,18 @@ export function expectSome(option, msg = undefined) {
 
 /**
  * @template T
- * @param {Option<T>} option
- * @returns {opt is T}
+ * @param {T | null | undefined} x
+ * @returns {x is T}
  */
-export function isSome(option) {
-    return option !== null && option !== undefined
+export function isDefined(x) {
+    return x !== null && x !== undefined
 }
 
 /**
  * @template T
- * @param {Option<T>} option
- * @returns {opt is (null | undefined)}
+ * @param {T | undefined} x
+ * @returns {x is undefined}
  */
-export function isNone(option) {
-    return option === null || option === undefined
+export function isUndefined(x) {
+    return x === undefined
 }

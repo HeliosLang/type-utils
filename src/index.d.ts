@@ -1,11 +1,12 @@
-declare global {
-    type Option<T> = null | undefined | T
-    type Either<L, R> = { left: L } | { right: R } // use right to represent a correct value, left for errors
-    type JsonSafe =
-        | (string | number | boolean | null)
-        | JsonSafe[]
-        | { [key: string]: JsonSafe }
-}
+export type Either<L, R> = { left: L } | { right: R }
+
+/**
+ * Use right to represent a correct value, left for errors
+ */
+export type JsonSafe =
+    | (string | number | boolean | null)
+    | JsonSafe[]
+    | { [key: string]: JsonSafe }
 
 export type NotifyOnFalse = ((reason: string) => void) | undefined
 export type Assert<T> = (
@@ -167,11 +168,15 @@ export function isObject<T extends { [key: string]: Check<any> }>(
     onFalse?: NotifyOnFalse
 ): input is ToObject<T>
 
-export const None: null
-export function allOrNone<T>(list: Option<T>[]): Option<T[]>
-export function expectSome<T>(option: Option<T>, msg?: string | undefined): T
-export function isNone<T>(option: Option<T>): option is null | undefined
-export function isSome<T>(option: Option<T>): option is T
+export function allOrUndefined<T>(
+    list: (T | null | undefined)[]
+): T[] | undefined
+export function expectDefined<T>(
+    x: T | null | undefined,
+    msg?: string | undefined
+): T
+export function isUndefined<T>(x: T | undefined): x is undefined
+export function isDefined<T>(x: T | null | undefined): x is T
 
 export function assertString(
     input: unknown,

@@ -8,6 +8,10 @@ import { assertJsonSafe, expectJsonSafe, isJsonSafe } from "./json.js"
  * @typedef {import("./generic.js").Assert<T>} Assert
  */
 
+/**
+ * @typedef {import("./json.js").JsonSafe} JsonSafe
+ */
+
 describe(expectJsonSafe.name, () => {
     it("ok for null", () => {
         strictEqual(expectJsonSafe(null), null)

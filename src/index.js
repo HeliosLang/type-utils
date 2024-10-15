@@ -21,7 +21,12 @@ export {
 } from "./json.js"
 export { assertNumber, expectNumber, isNumber } from "./number.js"
 export { isObject } from "./object.js"
-export { None, allOrNone, expectSome, isNone, isSome } from "./option.js"
+export {
+    allOrUndefined,
+    expectDefined,
+    isUndefined,
+    isDefined
+} from "./option.js"
 export {
     assertString,
     expectString,

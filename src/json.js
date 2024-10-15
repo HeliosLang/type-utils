@@ -4,6 +4,15 @@ import { assert, expect } from "./generic.js"
  * @typedef {import("./generic.js").NotifyOnFalse} NotifyOnFalse
  */
 
+/**
+ * Not quite the same as the actually exported type in index.d.ts because JSDoc isn't as permissive for circular-references within the same typedef
+ * @typedef {(
+ *   | (string | number | boolean | null)
+ *   | { [key: number]: JsonSafe }
+ *   | { [key: string]: JsonSafe }
+ * )} JsonSafe
+ */
+
 export const JSONSafe = {
     parse: JSON.parse,
     stringify: JSON.stringify

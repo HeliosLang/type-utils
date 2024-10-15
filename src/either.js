@@ -1,6 +1,12 @@
 /**
  * @template L
  * @template R
+ * @typedef {{ left: L } | { right: R }} Either
+ */
+
+/**
+ * @template L
+ * @template R
  * @param {Either<L, R>} either
  * @param {string | undefined} msg
  * @returns {L}
