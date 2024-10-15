@@ -1,6 +1,6 @@
 {
     "name": "@helios-lang/type-utils",
-    "version": "0.2.7",
+    "version": "0.2.8",
     "description": "Global utility types",
     "main": "src/index.js",
     "types": "src/index.d.ts",
