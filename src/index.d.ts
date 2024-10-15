@@ -16,6 +16,11 @@ export type Assert<T> = (
 export type Check<T> = (input: unknown, onFalse?: NotifyOnFalse) => input is T
 export type Expect<T> = (input: unknown, msg?: string | undefined) => T
 
+/**
+ * Use this to assert that one type extends another, without needing values
+ */
+export type AssertExtends<A, B extends A> = never
+
 export function assert<T>(check: Check<T>): Assert<T>
 export function assert<T>(
     input: unknown,
