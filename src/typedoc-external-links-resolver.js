@@ -21,7 +21,7 @@ export function load(app) {
                 ref.moduleSource != packageConfig.name &&
                 ref.moduleSource.startsWith("@helios-lang/")
             ) {
-                // link format: `docs.helios-lang.io/api/<package-name>/<version>/<symbol-type>/<symbol-name>.html
+                // link format: `docs.helios-lang.io/api/<package-name>/<version>/*/<symbol-name>.html
 
                 // eg. "@helios-lang/type-utils"
                 const packageName = ref.moduleSource.split("/")[1]
@@ -30,12 +30,10 @@ export function load(app) {
                 const packageVersion =
                     packageConfig.dependencies[ref.moduleSource]
 
-                const symbolType = ref.symbolReference?.meaning?.keyword
+                if (packageName && packageVersion && ref.symbolReference?.path?.length === 1) {
+                    const symbolName = ref.symbolReference.path[0].path
 
-                const symbolName = ref.symbolReference?.meaning?.label
-
-                if (packageName && packageVersion && symbolType && symbolName) {
-                    return `https://docs.helios-lang.io/api/${packageName}/${packageVersion}/${symbolType}s/${symbolName}.html`
+                    return `https://docs.helios-lang.io/api/${packageName}/${packageVersion}/*/${symbolName}.html`
                 }
             }
 
