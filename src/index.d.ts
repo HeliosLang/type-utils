@@ -1,3 +1,5 @@
+// TODO: convert back to .js
+
 export type Either<L, R> = { left: L } | { right: R }
 
 /**
