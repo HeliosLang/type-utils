@@ -307,12 +307,23 @@ export type IsSame<A, B> =
         : false
 export type AssertTrue<T extends true> = never
 
-export type FirstArgType<T extends (arg0: infer A) => any> = A
-export type SecondArgType<T extends (arg0: any, arg1: infer B) => any> = B
-export type ThirdArgType<
-    T extends (arg0: any, arg1: any, arg2: infer C) => any
-> = C
-export type FourthArgType<
-    T extends (arg0: any, arg1: any, arg2: any, arg3: infer D) => any
-> = D
-export type ReturnType<T extends () => infer R> = R
+export type FirstArgType<T> = T extends (arg0: infer A) => any ? A : never
+export type SecondArgType<T> = T extends (arg0: any, arg1: infer B) => any
+    ? B
+    : never
+export type ThirdArgType<T> = T extends (
+    arg0: any,
+    arg1: any,
+    arg2: infer C
+) => any
+    ? C
+    : never
+export type FourthArgType<T> = T extends (
+    arg0: any,
+    arg1: any,
+    arg2: any,
+    arg3: infer D
+) => any
+    ? D
+    : never
+export type ReturnType<T> = T extends () => infer R ? R : never
