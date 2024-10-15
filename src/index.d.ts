@@ -16,11 +16,6 @@ export type Assert<T> = (
 export type Check<T> = (input: unknown, onFalse?: NotifyOnFalse) => input is T
 export type Expect<T> = (input: unknown, msg?: string | undefined) => T
 
-/**
- * Use this to assert that one type extends another, without needing values
- */
-export type AssertExtends<A, B extends A> = never
-
 export function assert<T>(check: Check<T>): Assert<T>
 export function assert<T>(
     input: unknown,
@@ -288,3 +283,36 @@ export type FieldTypeSchema = {
     key?: string // use .name as fallback if .key is expected
     type: TypeSchema
 }
+
+/**
+ * Use this to assert that one type extends another, without needing values
+ */
+export type AssertExtends<A, B extends A> = never
+
+/**
+ * @internal
+ */
+type MakeAllFieldsMandatory<T> = T extends object
+    ? { [P in keyof T]-?: T[P] }
+    : T
+
+/**
+ * Use `AssertTrue<IsSame<A, B>>` when copying type verbatim so that they look better in the generated docs, but when you still want to assure that the types remains equal to the internal type
+ */
+export type IsSame<A, B> =
+    A extends MakeAllFieldsMandatory<B>
+        ? B extends MakeAllFieldsMandatory<A>
+            ? true
+            : false
+        : false
+export type AssertTrue<T extends true> = never
+
+export type FirstArgType<T extends (arg0: infer A) => any> = A
+export type SecondArgType<T extends (arg0: any, arg1: infer B) => any> = B
+export type ThirdArgType<
+    T extends (arg0: any, arg1: any, arg2: infer C) => any
+> = C
+export type FourthArgType<
+    T extends (arg0: any, arg1: any, arg2: any, arg3: infer D) => any
+> = D
+export type ReturnType<T extends () => infer R> = R
