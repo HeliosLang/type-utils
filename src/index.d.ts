@@ -331,3 +331,5 @@ export type FourthArgType<T> = T extends (
     ? D
     : never
 export type ReturnType<T> = T extends () => infer R ? R : never
+
+export type UnwrapSingleton<T extends any[]> = T extends [infer E] ? E : T
