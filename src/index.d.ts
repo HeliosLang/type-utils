@@ -299,12 +299,16 @@ type MakeAllFieldsMandatory<T> = T extends object
 /**
  * Use `AssertTrue<IsSame<A, B>>` when copying type verbatim so that they look better in the generated docs, but when you still want to assure that the types remains equal to the internal type
  */
-export type IsSame<A, B> =
-    A extends MakeAllFieldsMandatory<B>
-        ? B extends MakeAllFieldsMandatory<A>
-            ? true
+export type IsSame<A, B> = A extends B
+    ? B extends A
+        ? MakeAllFieldsMandatory<A> extends MakeAllFieldsMandatory<B>
+            ? MakeAllFieldsMandatory<B> extends MakeAllFieldsMandatory<A>
+                ? true
+                : false
             : false
         : false
+    : false
+
 export type AssertTrue<T extends true> = never
 
 export type FirstArgType<T> = T extends (arg0: infer A) => any ? A : never
