@@ -5,3 +5,4 @@ log.*
 .prettierignore
 .vscode
 *.test.js
+test

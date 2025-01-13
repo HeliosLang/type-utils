@@ -30,7 +30,11 @@ export function load(app) {
                 const packageVersion =
                     packageConfig.dependencies[ref.moduleSource]
 
-                if (packageName && packageVersion && ref.symbolReference?.path?.length === 1) {
+                if (
+                    packageName &&
+                    packageVersion &&
+                    ref.symbolReference?.path?.length === 1
+                ) {
                     const symbolName = ref.symbolReference.path[0].path
 
                     return `https://docs.helios-lang.io/api/${packageName}/${packageVersion}/*/${symbolName}.html`
