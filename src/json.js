@@ -1,21 +1,32 @@
 import { assert, expect } from "./generic.js"
 
 /**
- * @typedef {import("./generic.js").NotifyOnFalse} NotifyOnFalse
+ * @import { JsonSafe, NotifyOnFalse } from "./index.js"
  */
 
 /**
- * Not quite the same as the actually exported type in index.d.ts because JSDoc isn't as permissive for circular-references within the same typedef
- * @typedef {(
- *   | (string | number | boolean | null)
- *   | { [key: number]: JsonSafe }
- *   | { [key: string]: JsonSafe }
- * )} JsonSafe
+ * `JSON` must be imported explicitly in order to override default JSON namespace
+ * @namespace {JSON}
  */
-
 export const JSONSafe = {
-    parse: JSON.parse,
-    stringify: JSON.stringify
+    /**
+     * @param {string} text
+     * @param {((this: any, key: string, value: any) => any) | undefined} [reviver]
+     * @returns {JsonSafe}
+     */
+    parse: (text, reviver = undefined) => {
+        return JSON.parse(text, reviver)
+    },
+    /**
+     *
+     * @param {JsonSafe} value
+     * @param {((this: any, key: string, value: any) => any) | undefined} [replacer]
+     * @param {string | number | undefined} [space]
+     * @returns
+     */
+    stringify: (value, replacer = undefined, space = undefined) => {
+        return JSON.stringify(value, replacer, space)
+    }
 }
 
 /**

@@ -1,8 +1,8 @@
+import { strictEqual } from "node:assert"
 import { describe, it } from "node:test"
+import { isNumber } from "./number.js"
 import { isObject } from "./object.js"
 import { isString } from "./string.js"
-import { isNumber } from "./number.js"
-import { strictEqual } from "node:assert"
 
 /**
  * @param  {...any} _args

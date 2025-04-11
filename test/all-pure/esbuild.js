@@ -24,7 +24,7 @@ async function main() {
 
     if (n != 0) {
         throw new Error(
-            `Some top-level statements in @helios-lang/codec-utils are not PURE according to esbuild, see '${dst}'`
+            `Some top-level statements are not PURE according to esbuild, see '${dst}'`
         )
     }
 }

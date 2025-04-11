@@ -1,15 +1,5 @@
 /**
- * @typedef {import("./generic.js").NotifyOnFalse} NotifyOnFalse
- */
-
-/**
- * @template T
- * @typedef {import("./generic.js").Check<T>} Check
- */
-
-/**
- * @template {{[key: string]: Check<any>}} T
- * @typedef {{[I in keyof T]: T[I] extends Check<infer C> ? C : never}} ToObject
+ * @import { Check, NotifyOnFalse, ToObject } from "./index.js"
  */
 
 /**
@@ -17,20 +7,23 @@
  * @overload
  * @param {T} checkProperties
  * @returns {Check<ToObject<T>>}
- *
+ */
+/**
  * @template {{[key: string]: Check<any>}} T
  * @overload
  * @param {unknown} input
  * @param {T} checkProperties
  * @returns {input is ToObject<T>}
- *
+ */
+/**
  * @template {{[key: string]: Check<any>}} T
  * @overload
  * @param {unknown} input
  * @param {T} checkProperties
  * @param {NotifyOnFalse} onFalse
  * @returns {input is ToObject<T>}
- *
+ */
+/**
  * @template {{[key: string]: Check<any>}} T
  * @param {[T] | [unknown, T] | [unknown, T, NotifyOnFalse]} args
  */

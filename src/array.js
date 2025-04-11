@@ -3,22 +3,7 @@ import { isNumber } from "./number.js"
 import { isString } from "./string.js"
 
 /**
- * @typedef {import("./generic.js").NotifyOnFalse} NotifyOnFalse
- */
-
-/**
- * @template T
- * @typedef {import("./generic.js").Assert<T>} Assert
- *
- */
-/**
- * @template T
- * @typedef {import("./generic.js").Check<T>} Check
- */
-
-/**
- * @template T
- * @typedef {import("./generic.js").Expect<T>} Expect
+ * @import { Assert, NotifyOnFalse, Check, Expect } from "./index.js"
  */
 
 /**
@@ -26,20 +11,23 @@ import { isString } from "./string.js"
  * @overload
  * @param {Check<T>} checkItem
  * @returns {Check<T[]>}
- *
+ */
+/**
  * @template T
  * @overload
  * @param {unknown} input
  * @param {Check<T>} checkItem
  * @returns {input is T[]}
- *
+ */
+/**
  * @template T
  * @overload
  * @param {unknown} input
  * @param {Check<T>} checkItem
  * @param {NotifyOnFalse} onFalse
  * @returns {input is T[]}
- *
+ */
+/**
  * @template T
  * @param {[Check<T>] | [unknown, Check<T>] | [unknown, Check<T>, NotifyOnFalse]} args
  */
@@ -84,20 +72,23 @@ export function isArray(...args) {
  * @overload
  * @param {Check<T>} checkItem
  * @returns {Assert<T[]>}
- *
+ */
+/**
  * @template T
  * @overload
  * @param {unknown} input
  * @param {Check<T>} checkItem
  * @returns {asserts input is T[]}
- *
+ */
+/**
  * @template T
  * @overload
  * @param {unknown} input
  * @param {Check<T>} checkItem
  * @param {string | undefined} msg
  * @returns {asserts input is T[]}
- *
+ */
+/**
  * @template T
  * @param {[Check<T>] | [unknown, Check<T>] | [unknown, Check<T>, string | undefined]} args
  */
@@ -123,20 +114,23 @@ export function assertArray(...args) {
  * @overload
  * @param {Check<T>} checkItem
  * @returns {Expect<T[]>}
- *
+ */
+/**
  * @template T
  * @overload
  * @param {unknown} input
  * @param {Check<T>} checkItem
  * @returns {T[]}
- *
+ */
+/**
  * @template T
  * @overload
  * @param {unknown} input
  * @param {Check<T>} checkItem
  * @param {string | undefined} msg
  * @returns {T[]}
- *
+ */
+/**
  * @template T
  * @param {[Check<T>] | [unknown, Check<T>] | [unknown, Check<T>, string | undefined]} args
  */

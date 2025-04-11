@@ -1,15 +1,10 @@
-import { describe, it } from "node:test"
 import { strictEqual, throws } from "node:assert"
+import { describe, it } from "node:test"
 import { assert, expect } from "./generic.js"
 import { assertJsonSafe, expectJsonSafe, isJsonSafe } from "./json.js"
 
 /**
- * @template T
- * @typedef {import("./generic.js").Assert<T>} Assert
- */
-
-/**
- * @typedef {import("./json.js").JsonSafe} JsonSafe
+ * @import { Assert, JsonSafe } from "./index.js"
  */
 
 describe(expectJsonSafe.name, () => {

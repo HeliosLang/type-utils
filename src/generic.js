@@ -1,21 +1,5 @@
-export {}
-
 /**
- * @template T
- * @typedef {(input: unknown, msg?: string | undefined) => asserts input is T} Assert
- */
-
-/**
- * @typedef {((reason: string) => void) | undefined} NotifyOnFalse
- */
-/**
- * @template T
- * @typedef {(input: unknown, onFalse?: NotifyOnFalse) => input is T} Check
- */
-
-/**
- * @template T
- * @typedef {(input: unknown, msg?: string | undefined) => T} Expect
+ * @import { Assert, Check, Expect, NotifyOnFalse, ToOneOf } from "./index.js"
  */
 
 /**
@@ -23,25 +7,29 @@ export {}
  * @overload
  * @param {Check<T>} check
  * @returns {Assert<T>}
- *
+ */
+/**
  * @template T
  * @overload
  * @param {unknown} input
  * @param {Check<T>} check
  * @returns {asserts input is T}
- *
+ */
+/**
  * @overload
  * @param {boolean} condition
  * @param {string | undefined} msg
  * @returns {asserts condition is true}
- *
+ */
+/**
  * @template T
  * @overload
  * @param {unknown} input
  * @param {Check<T>} check
  * @param {string | undefined} msg
  * @returns {asserts input is T}
- *
+ */
+/**
  * @template T
  * @param {[Check<T>] | [unknown, Check<T>] | [boolean, string | undefined] | [unknown, Check<T>, string | undefined]} args
  */
@@ -110,20 +98,23 @@ export function check(assertOrExpect) {
  * @overload
  * @param {Check<T>} check
  * @returns {Expect<T>}
- *
+ */
+/**
  * @template T
  * @overload
  * @param {unknown} input
  * @param {Check<T>} check
  * @returns {T}
- *
+ */
+/**
  * @template T
  * @overload
  * @param {unknown} input
  * @param {Check<T>} check
  * @param {string | undefined} msg
  * @returns {T}
- *
+ */
+/**
  * @template T
  * @param {[Check<T>] | [unknown, Check<T>] | [unknown, Check<T>, string | undefined]} args
  */
@@ -161,20 +152,23 @@ export function expect(...args) {
  * @overload
  * @param {T} output
  * @returns {Check<T>}
- *
+ */
+/**
  * @template T
  * @overload
  * @param {unknown} input
  * @param {T} output
  * @returns {input is T}
- *
+ */
+/**
  * @template T
  * @overload
  * @param {unknown} input
  * @param {T} output
  * @param {NotifyOnFalse} onFalse
  * @returns {input is T}
- *
+ */
+/**
  * @template T
  * @param  {[T] | [unknown, T] | [unknown, T, NotifyOnFalse]} args
  */
@@ -201,11 +195,6 @@ export function isExactly(...args) {
         }
     }
 }
-
-/**
- * @template {Array<Check<any>>} T
- * @typedef {T extends Array<Check<infer I>> ? I : never} ToOneOf
- */
 
 /**
  * @template {Array<Check<any>>} T

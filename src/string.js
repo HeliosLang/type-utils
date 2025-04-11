@@ -1,12 +1,7 @@
 import { assert, expect } from "./generic.js"
 
 /**
- * @typedef {import("./generic.js").NotifyOnFalse} NotifyOnFalse
- */
-
-/**
- * @template T
- * @typedef {import("./generic.js").Check<T>} Check
+ * @import { Check, CheckFormat, NotifyOnFalse } from "./index.js"
  */
 
 /**
@@ -26,25 +21,24 @@ export function isString(input, onFalse = undefined) {
 }
 
 /**
- * @typedef {(s: string) => boolean} CheckFormat
- */
-
-/**
  * @overload
  * @param {CheckFormat} checkFormat
  * @returns {Check<string>}
- *
+ */
+/**
  * @overload
  * @param {unknown} input
  * @param {CheckFormat} checkFormat
  * @returns {input is string}
- *
+ */
+/**
  * @overload
  * @param {unknown} input
  * @param {CheckFormat} checkFormat
  * @param {NotifyOnFalse} onFalse
  * @returns {input is string}
- *
+ */
+/**
  * @param  {[CheckFormat] | [unknown, (s: string) => boolean] | [unknown, (s: string) => boolean, NotifyOnFalse]} args
  */
 export function isFormattedString(...args) {

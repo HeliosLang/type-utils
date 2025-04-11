@@ -3,10 +3,10 @@
         "checkJs": true,
         "declaration": true,
         "declarationMap": true,
+        "declarationDir": "./types",
         "skipLibCheck": true,
         "noImplicitThis": true,
         "strictNullChecks": true,
-        "noUnusedLocals": true,
         "noUnusedParameters": true,
         "noFallthroughCasesInSwitch": true,
         "moduleResolution": "nodenext",
@@ -14,6 +14,6 @@
         "target": "esnext",
         "lib": ["es6"]
     },
-    "exclude": ["node_modules"],
-    "include": ["src/index.d.ts", "src/**/*.js", "src/json.test.ts"]
+    "exclude": ["node_modules", "src/**/*.d.ts"],
+    "include": ["src/**/*.js"]
 }

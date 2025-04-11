@@ -1,7 +1,5 @@
 /**
- * @template L
- * @template R
- * @typedef {{ left: L } | { right: R }} Either
+ * @import { Either } from "./index.js"
  */
 
 /**

@@ -1,9 +1,9 @@
-import { describe, it } from "node:test"
-import { isTuple } from "./tuple.js"
-import { isNumber } from "./number.js"
-import { isBoolean } from "./boolean.js"
 import { strictEqual, throws } from "node:assert"
+import { describe, it } from "node:test"
+import { isBoolean } from "./boolean.js"
 import { assert } from "./generic.js"
+import { isNumber } from "./number.js"
+import { isTuple } from "./tuple.js"
 
 describe(isTuple.name, () => {
     it("[0, true] passes [isNumber, isBoolean]", () => {

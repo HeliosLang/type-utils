@@ -1,12 +1,5 @@
 /**
- * @template T
- * @typedef {import("./generic.js").Assert<T>} Assert
- */
-
-/**
- * @template {Record<string, Assert<any>>} A
- * @template K
- * @typedef {K extends string ? {[K_ in K]: (A[K] extends Assert<infer O> ? O : never)} : never} ToEnum
+ * @import { Assert, ToEnum } from "./index.js"
  */
 
 /**

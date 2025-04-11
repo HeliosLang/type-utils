@@ -1,15 +1,5 @@
 /**
- * @typedef {import("./generic.js").NotifyOnFalse} NotifyOnFalse
- */
-
-/**
- * @template T
- * @typedef {import("./generic.js").Check<T>} Check
- */
-
-/**
- * @template {Array<Check<any>>} T
- * @typedef {{[I in keyof T]: T[I] extends Check<infer Ti> ? Ti : never}} ToTuple
+ * @import { Check, ToTuple } from "./index.js"
  */
 
 /**

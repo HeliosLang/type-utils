@@ -1,7 +1,7 @@
 import { assert, expect } from "./generic.js"
 
 /**
- * @typedef {import("./generic.js").NotifyOnFalse} NotifyOnFalse
+ * @import { NotifyOnFalse } from "./index.js"
  */
 
 /**
